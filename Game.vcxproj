@@ -142,11 +142,13 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="padel.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Menu.hpp" />
     <ClInclude Include="padel.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>

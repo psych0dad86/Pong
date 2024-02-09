@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.hpp"
+#include "Menu.hpp"
 
 enum Direction
 {
@@ -11,16 +11,17 @@ public:
 	Padel();
 	~Padel();
 
-	void SetPosition(const sf::Vector2f position);
-	void SetOriging(const sf::Vector2f position);
+	void SetPosition(const sf::Vector2f& position);
+	void SetOriging(const sf::Vector2f& position);
 	const sf::RectangleShape& GetShapeAdress() const;
 	void SetDirection(const Direction direction);
-	void Move(const float elapsed);
+	void Move(const float& elapsed, const sf::Vector2u& windowsize);
 	
 	sf::Vector2f GetPosition();
 
 private:
 	sf::RectangleShape _padle;
+	float _speed;
 	Direction _direction;
 };
 

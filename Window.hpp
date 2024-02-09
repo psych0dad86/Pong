@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <vector>
 #include <iostream>
 
 class Window : sf::RenderWindow

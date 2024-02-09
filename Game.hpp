@@ -17,7 +17,9 @@ public:
 private:
 	Padel _player1;
 	Padel _player2;
+	
 	Window _window;
+	Menu _menu;
 	sf::Clock _clock;
 	float _elapsedTime;
 	

@@ -14,6 +14,7 @@ Game::Game()
 
 	//_menu.SetUpbuttonPos(_window.GetWindowSize());
 
+	_menuOpen = true;
 	_clock.restart();
 	_elapsedTime = 0.0f;
 }
@@ -39,42 +40,71 @@ void Game::UpDate()
 void Game::Rendering()
 {
 	_window.BeginDraw();
-	_window.EndDraw(_player1.GetShapeAdress());
-	_window.EndDraw(_player2.GetShapeAdress());
-	for (int i = 0; i < 4; i++)
+
+	if (_menuOpen == false)
 	{
-		_window.EndDraw(_menu.GetMenuShape()[i]);
+		_window.EndDraw(_player1.GetShapeAdress());
+		_window.EndDraw(_player2.GetShapeAdress());
+
 	}
+	else
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			_window.EndDraw(_menu.GetMenuShape()[i]);
+			_window.EndDraw(_menu.GetAdress_menuFont(i));
+		}
+
+	}
+	
 	
 	_window.DisplayWindow();
 }
 void Game::HandleInput()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (_menuOpen == false)
 	{
-		_player1.SetDirection(Direction::Up);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		_player1.SetDirection(Direction::Down);
-	}
-	else 
-	{
-		_player1.SetDirection(Direction::None);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			_player1.SetDirection(Direction::Up);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			_player1.SetDirection(Direction::Down);
+		}
+		else
+		{
+			_player1.SetDirection(Direction::None);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			_player2.SetDirection(Direction::Up);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			_player2.SetDirection(Direction::Down);
+		}
+		else
+		{
+			_player2.SetDirection(Direction::None);
+		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	static bool keyWasReleased = true;;
+	if (keyWasReleased == true)
 	{
-		_player2.SetDirection(Direction::Up);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		{
+			_menuOpen = !_menuOpen;
+			keyWasReleased = false;
+		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
-		_player2.SetDirection(Direction::Down);
+		keyWasReleased = true;
 	}
-	else
-	{
-		_player2.SetDirection(Direction::None);
-	}
+
 }
 void Game::RestartClock()
 {

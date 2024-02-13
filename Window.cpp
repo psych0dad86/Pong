@@ -46,6 +46,11 @@ void Window::EndDraw(const sf::RectangleShape& drawble)
 	_window.draw(drawble);
 }
 
+void Window::EndDraw(const sf::Text& drawble)
+{
+	_window.draw(drawble);
+}
+
 void Window::DisplayWindow()
 {
 	_window.display();

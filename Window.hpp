@@ -17,6 +17,7 @@ public:
 
 	void BeginDraw();
 	void EndDraw(const sf::RectangleShape& drawble);
+	void EndDraw(const sf::Text& drawble);
 	void DisplayWindow();
 	void UpDate();
 	inline sf::RenderWindow& GetWindow() { return _window; }

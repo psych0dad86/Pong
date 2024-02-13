@@ -20,6 +20,7 @@ private:
 	
 	Window _window;
 	Menu _menu;
+	bool _menuOpen;
 	sf::Clock _clock;
 	float _elapsedTime;
 	

@@ -1,12 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <vector>
-#include <iostream>
+#include "padel.hpp"
 
 class Window : sf::RenderWindow
 {
@@ -18,6 +12,7 @@ public:
 	void BeginDraw();
 	void EndDraw(const sf::RectangleShape& drawble);
 	void EndDraw(const sf::Text& drawble);
+	void EndDraw(const Menu& drawble);
 	void DisplayWindow();
 	void UpDate();
 	inline sf::RenderWindow& GetWindow() { return _window; }

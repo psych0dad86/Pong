@@ -12,7 +12,7 @@ Game::Game()
 	_player2.SetOriging(sf::Vector2f(50, 100));
 	_player2.SetPosition(_paddle_2StartPosition);
 
-	//_menu.SetUpbuttonPos(_window.GetWindowSize());
+
 
 	_menuOpen = true;
 	_clock.restart();
@@ -49,12 +49,8 @@ void Game::Rendering()
 	}
 	else
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			_window.EndDraw(_menu.GetMenuShape()[i]);
-			_window.EndDraw(_menu.GetAdress_menuFont(i));
-		}
 
+		_window.EndDraw(_menu);
 	}
 	
 	
@@ -92,6 +88,7 @@ void Game::HandleInput()
 	}
 
 	static bool keyWasReleased = true;;
+	static sf::Clock keyClock;
 	if (keyWasReleased == true)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
@@ -99,11 +96,31 @@ void Game::HandleInput()
 			_menuOpen = !_menuOpen;
 			keyWasReleased = false;
 		}
+
+		if (_menuOpen == true)
+		{
+			if (keyClock.getElapsedTime().asSeconds() >= 0.1f)
+			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+				{
+					_menu.SetSelectedButton(sf::Keyboard::Up);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+				{
+					_menu.SetSelectedButton(sf::Keyboard::Down);
+				}
+				keyClock.restart();
+			}
+			
+		}
+		
 	}
 	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		keyWasReleased = true;
 	}
+
+
 
 }
 void Game::RestartClock()

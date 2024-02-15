@@ -51,6 +51,12 @@ void Window::EndDraw(const sf::Text& drawble)
 	_window.draw(drawble);
 }
 
+void Window::EndDraw(const Menu& drawble)
+{
+	_window.draw(drawble);
+}
+
+
 void Window::DisplayWindow()
 {
 	_window.display();

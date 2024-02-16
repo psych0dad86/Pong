@@ -14,7 +14,7 @@ public:
 	CustomFont();
 	CustomFont(const unsigned int& charSize, const sf::Vector2f(position));
 	~CustomFont();
-	const sf::Text& GetTextAdress()const;
+
 	void setName(const std::string& label);
 	void Update(const unsigned int& charSize, const sf::Vector2f(position), const sf::Color& color);
 	void ChangeColor(const sf::Color& color);

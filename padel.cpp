@@ -9,6 +9,7 @@ Padel::Padel()
 
 	_direction = None;
 	_speed = 0.5;
+	_score = 0;
 	
 }
 
@@ -56,6 +57,7 @@ void Padel::Move(const float& elapsed, const sf::Vector2u& windowsize)
 	default: std::cout << "Something get Wrong, no UP, Down or None" << std::endl;
 	}
 }
+
 
 sf::Vector2f Padel::GetPosition()
 {

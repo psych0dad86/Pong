@@ -10,12 +10,9 @@ public:
 
 
 	void Update(const sf::Vector2u windowsize);
-	const sf::Text& GetAdress_menuFont(const int& i) const;
-
-	const sf::RectangleShape* GetMenuShape() const;
 	void SetUpbuttonPos(const sf::Vector2u windowsize);
 	void SetSelectedButton(const sf::Keyboard::Key& button);
-
+	void SetSelectedButton(const Button& button);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	
 

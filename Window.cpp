@@ -78,7 +78,7 @@ void Window::UpDate()
 			this->Create();
 		}
 	}
-	_window.setFramerateLimit(60);
+	_window.setFramerateLimit(120);
 }
 
 const sf::Vector2u Window::GetWindowSize() const

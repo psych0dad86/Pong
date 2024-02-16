@@ -21,6 +21,7 @@ public:
 
 private:
 	sf::RectangleShape _padle;
+	int _score;
 	float _speed;
 	Direction _direction;
 };

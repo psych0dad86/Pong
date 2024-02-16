@@ -17,6 +17,9 @@ public:
 private:
 	Padel _player1;
 	Padel _player2;
+
+	CustomFont _scorePlayer1;
+	CustomFont _scorePlayer2;
 	
 	Window _window;
 	Menu _menu;

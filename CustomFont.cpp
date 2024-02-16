@@ -25,10 +25,6 @@ CustomFont::~CustomFont()
 {
 }
 
-const sf::Text& CustomFont::GetTextAdress() const
-{
-	return _text;
-}
 
 void CustomFont::setName(const std::string& label)
 {

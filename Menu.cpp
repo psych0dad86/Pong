@@ -29,15 +29,6 @@ void Menu::Update(const sf::Vector2u windowsize)
 	_PositionBackground.x = windowsize.x / 2;
 	_PositionBackground.y = windowsize.y / 4;
 
-	
-
-
-
-
-
-
-
-
 
 	for (int i = 0; i < 4; ++i)
 	{
@@ -81,15 +72,6 @@ void Menu::Update(const sf::Vector2u windowsize)
 	}
 }
 
-const sf::Text& Menu::GetAdress_menuFont(const int & i) const
-{
-	return _menuFont[i].GetTextAdress();
-}
-
-const sf::RectangleShape* Menu::GetMenuShape() const
-{
-	return _shape;
-}
 
 void Menu::SetUpbuttonPos(const sf::Vector2u windowsize)
 {
@@ -121,6 +103,11 @@ void Menu::SetSelectedButton(const sf::Keyboard::Key& button)
 			_selectedButton = static_cast<Button>(static_cast<int>(_selectedButton) + 1);
 		}
 	}
+}
+
+void Menu::SetSelectedButton(const Button& button)
+{
+	_selectedButton = button;
 }
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const

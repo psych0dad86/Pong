@@ -13,6 +13,7 @@ public:
 	void EndDraw(const sf::RectangleShape& drawble);
 	void EndDraw(const sf::Text& drawble);
 	void EndDraw(const Menu& drawble);
+	void EndDraw(const CustomFont& drawble);
 	void DisplayWindow();
 	void UpDate();
 	inline sf::RenderWindow& GetWindow() { return _window; }

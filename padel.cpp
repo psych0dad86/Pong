@@ -58,6 +58,11 @@ void Padel::Move(const float& elapsed, const sf::Vector2u& windowsize)
 	}
 }
 
+const int& Padel::GetScore() const
+{
+	return _score;
+}
+
 
 sf::Vector2f Padel::GetPosition()
 {

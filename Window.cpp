@@ -56,6 +56,11 @@ void Window::EndDraw(const Menu& drawble)
 	_window.draw(drawble);
 }
 
+void Window::EndDraw(const CustomFont& drawble)
+{
+	_window.draw(drawble);
+}
+
 
 void Window::DisplayWindow()
 {

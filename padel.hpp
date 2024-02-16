@@ -16,7 +16,7 @@ public:
 	const sf::RectangleShape& GetShapeAdress() const;
 	void SetDirection(const Direction direction);
 	void Move(const float& elapsed, const sf::Vector2u& windowsize);
-	
+	const int& GetScore() const;
 	sf::Vector2f GetPosition();
 
 private:

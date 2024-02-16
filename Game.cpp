@@ -4,15 +4,20 @@ Game::Game()
 {
 	
 	
-	_paddle_1StartPosition = sf::Vector2f(_window.GetWindowSize().x / 10, _window.GetWindowSize().y / 2);
-	_paddle_2StartPosition = sf::Vector2f(_window.GetWindowSize().x / 10 * 9, _window.GetWindowSize().y / 2);
+	_paddle_1StartPosition = sf::Vector2f(_window.GetWindowSize().x / 10.0f, _window.GetWindowSize().y / 2.0f);
+	_paddle_2StartPosition = sf::Vector2f(_window.GetWindowSize().x / 10.0f * 9.0f, _window.GetWindowSize().y / 2.0f);
 
 	_player1.SetPosition(_paddle_1StartPosition);
 
 	_player2.SetOriging(sf::Vector2f(50, 100));
 	_player2.SetPosition(_paddle_2StartPosition);
 
-	
+	_scorePlayer1.setName(std::to_string(_player1.GetScore()));
+	_scorePlayer2.setName(std::to_string(_player2.GetScore()));
+
+	_scorePlayer1.Update(90, sf::Vector2f(_paddle_1StartPosition.x / 2, _paddle_1StartPosition.y / 4), sf::Color(255, 0, 255));
+	_scorePlayer2.Update(90, sf::Vector2f(_window.GetWindowSize().x - _paddle_1StartPosition.x / 2, _paddle_1StartPosition.y / 4), sf::Color(255, 0, 255));
+
 
 	_menuOpen = true;
 	_clock.restart();
@@ -45,6 +50,8 @@ void Game::Rendering()
 	{
 		_window.EndDraw(_player1.GetShapeAdress());
 		_window.EndDraw(_player2.GetShapeAdress());
+		_window.EndDraw(_scorePlayer1);
+		_window.EndDraw(_scorePlayer2);
 
 	}
 	else

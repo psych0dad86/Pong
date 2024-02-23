@@ -20,6 +20,7 @@ Game::Game()
 
 	_ball.Update(sf::Vector2f(_window.GetWindowSize().x / 2.0f, _window.GetWindowSize().y / 2.0f), _window.GetWindowSize());
 
+	_gameRun = true;
 	_menuOpen = true;
 	_clock.restart();
 	_elapsedTime = 0.0f;
@@ -108,13 +109,16 @@ void Game::HandleInput()
 	
 	if (p_WasReleased == true)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && _gameRun == true)
 		{
 			_menuOpen = !_menuOpen;
 			_menu.SetSelectedButton(Button::NEW_GAME);
 			p_WasReleased = false;
 			_elapsedTime = 0.0f;
 		}
+
+		
 
 		if (_menuOpen == true)
 		{
@@ -130,7 +134,16 @@ void Game::HandleInput()
 					_menu.SetSelectedButton(sf::Keyboard::Down);
 					down_wasReleased = false;
 				}
-			}	
+			}
+			else if (_gameRun == true)
+			{
+				_menu.SetSelectedButton(Button::Continue);
+			}
+			else if (_gameRun == false)
+			{
+				_menu.SetSelectedButton(Button::NEW_GAME);
+			}
+
 		}	
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))

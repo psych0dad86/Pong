@@ -40,32 +40,6 @@ void Window::BeginDraw()
 	_window.clear(sf::Color::Magenta);
 }
 
-void Window::EndDraw(const sf::RectangleShape& drawble)
-{
-	
-	_window.draw(drawble);
-}
-
-void Window::EndDraw(const sf::Text& drawble)
-{
-	_window.draw(drawble);
-}
-
-void Window::EndDraw(const Menu& drawble)
-{
-	_window.draw(drawble);
-}
-
-void Window::EndDraw(const CustomFont& drawble)
-{
-	_window.draw(drawble);
-}
-
-void Window::EndDraw(const sf::CircleShape& drawable)
-{
-	_window.draw(drawable);
-}
-
 
 void Window::DisplayWindow()
 {

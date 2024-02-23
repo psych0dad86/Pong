@@ -1,7 +1,7 @@
 #pragma once
 #include "CustomFont.hpp"
 
-enum class Button{NEW_GAME, ONE_VS_ONE, _EXIT };
+enum class Button{NEW_GAME, ONE_VS_ONE, _EXIT, Continue };
 class Menu : public sf::Drawable
 {
 public:

@@ -1,6 +1,8 @@
 #pragma once
-
 #include "padel.hpp"
+
+
+
 
 class Window : sf::RenderWindow
 {
@@ -10,11 +12,10 @@ public:
 
 
 	void BeginDraw();
-	void EndDraw(const sf::RectangleShape& drawble);
-	void EndDraw(const sf::Text& drawble);
-	void EndDraw(const Menu& drawble);
-	void EndDraw(const CustomFont& drawble);
-	void EndDraw(const sf::CircleShape& drawable);
+
+
+
+
 	void DisplayWindow();
 	void UpDate();
 	inline sf::RenderWindow& GetWindow() { return _window; }
@@ -22,6 +23,11 @@ public:
 	const sf::Vector2u GetWindowSize()const;
 	
 
+	template<typename T>
+	inline void EndDraw(const T& drawable)
+	{
+		_window.draw(drawable);
+	};
 
 private:
 	void SetUp(const std::string& title);
@@ -34,4 +40,7 @@ private:
 
 	bool _isFullscreen;
 };
+
+
+
 

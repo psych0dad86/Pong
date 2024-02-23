@@ -59,6 +59,7 @@ void Menu::Update(const sf::Vector2u windowsize)
 	{
 	case Button::NEW_GAME:
 		_menuFont[1].ChangeColor(sf::Color::Green);
+		_menuFont[1].UpdateName("New Game");
 		break;
 	case Button::ONE_VS_ONE:
 		_menuFont[2].ChangeColor(sf::Color::Green);
@@ -66,6 +67,9 @@ void Menu::Update(const sf::Vector2u windowsize)
 	case Button::_EXIT:
 		_menuFont[3].ChangeColor(sf::Color::Green);
 		break;
+	case Button::Continue:
+		_menuFont[1].UpdateName("Continue");
+		_menuFont[1].ChangeColor(sf::Color::Green);
 	default:
 		_menuFont[0].ChangeColor(sf::Color::Yellow);
 		break;

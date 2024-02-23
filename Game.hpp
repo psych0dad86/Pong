@@ -25,6 +25,7 @@ private:
 	Window _window;
 	Menu _menu;
 	bool _menuOpen;
+	bool _gameRun;
 	sf::Clock _clock;
 	float _elapsedTime;
 

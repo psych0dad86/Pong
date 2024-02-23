@@ -1,6 +1,6 @@
 #include "Ball.hpp"
 
-Ball::Ball() : _radius(25), _speed(0.1f)
+Ball::Ball() : _radius(25), _speed(0.2f)
 {
 	_ballShape.setFillColor(sf::Color::Green);
 	_ballShape.setRadius(_radius);

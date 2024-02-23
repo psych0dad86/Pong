@@ -61,6 +61,11 @@ void Window::EndDraw(const CustomFont& drawble)
 	_window.draw(drawble);
 }
 
+void Window::EndDraw(const sf::CircleShape& drawable)
+{
+	_window.draw(drawable);
+}
+
 
 void Window::DisplayWindow()
 {
@@ -83,7 +88,7 @@ void Window::UpDate()
 			this->Create();
 		}
 	}
-	_window.setFramerateLimit(120);
+	_window.setFramerateLimit(60);
 }
 
 const sf::Vector2u Window::GetWindowSize() const

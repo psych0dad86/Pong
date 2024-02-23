@@ -10,5 +10,5 @@ int main()
 		game.UpDate();
 		game.Rendering();
 		game.RestartClock();
-	}
+	};
 }

@@ -10,10 +10,10 @@ Menu::Menu()
 
 
 	_selectedButton = Button::NEW_GAME;
-	_menuFont[0].setName("Menu");
-	_menuFont[1].setName("New Game");
-	_menuFont[2].setName("1 VS 1");
-	_menuFont[3].setName("Exit");
+	_menuFont[0].UpdateName("Menu");
+	_menuFont[1].UpdateName("New Game");
+	_menuFont[2].UpdateName("1 VS 1");
+	_menuFont[3].UpdateName("Exit");
 	
 }
 

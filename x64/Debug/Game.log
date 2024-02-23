@@ -1,3 +1,21 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: Das Zwischenverzeichnis (x64\Debug\) enthält freigegebene Dateien aus einem anderen Projekt (Game.vcxproj). Dies kann zu einem falschen Bereinigungs- und Neuerstellungsverhalten führen.
-  CustomFont.cpp
+  Ball.cpp
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244: "Argument": Konvertierung von "T" in "T", möglicher Datenverlust
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         with
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         [
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:             T=unsigned int
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         ]
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         and
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         [
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:             T=float
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,68): warning C4244:         ]
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244: "Argument": Konvertierung von "T" in "T", möglicher Datenverlust
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         with
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         [
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:             T=unsigned int
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         ]
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         and
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         [
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:             T=float
+C:\Users\Administrator\Source\Repos\Game\Game\Ball.cpp(137,51): warning C4244:         ]
   Game.vcxproj -> C:\Users\Administrator\Source\Repos\Game\x64\Debug\Pong.exe

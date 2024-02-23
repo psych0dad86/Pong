@@ -17,6 +17,7 @@ public:
 private:
 	Padel _player1;
 	Padel _player2;
+	Ball  _ball;
 
 	CustomFont _scorePlayer1;
 	CustomFont _scorePlayer2;
@@ -26,6 +27,8 @@ private:
 	bool _menuOpen;
 	sf::Clock _clock;
 	float _elapsedTime;
+
+	
 	
 	sf::Vector2f _paddle_1StartPosition;
 	sf::Vector2f _paddle_2StartPosition;

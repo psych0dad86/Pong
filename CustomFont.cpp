@@ -26,7 +26,7 @@ CustomFont::~CustomFont()
 }
 
 
-void CustomFont::setName(const std::string& label)
+void CustomFont::UpdateName(const std::string& label)
 {
 	_text.setString(label);
 }

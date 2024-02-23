@@ -68,3 +68,9 @@ sf::Vector2f Padel::GetPosition()
 {
 	return _padle.getPosition();
 }
+
+
+void Padel::ChangeScore()
+{
+	_score++;
+}

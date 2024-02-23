@@ -14,6 +14,7 @@ public:
 	void EndDraw(const sf::Text& drawble);
 	void EndDraw(const Menu& drawble);
 	void EndDraw(const CustomFont& drawble);
+	void EndDraw(const sf::CircleShape& drawable);
 	void DisplayWindow();
 	void UpDate();
 	inline sf::RenderWindow& GetWindow() { return _window; }

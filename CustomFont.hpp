@@ -1,12 +1,6 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <vector>
-#include <iostream>
 
+#include "Ball.hpp"
 
 class CustomFont : public sf::Drawable
 {
@@ -15,7 +9,7 @@ public:
 	CustomFont(const unsigned int& charSize, const sf::Vector2f(position));
 	~CustomFont();
 
-	void setName(const std::string& label);
+	void UpdateName(const std::string& label);
 	void Update(const unsigned int& charSize, const sf::Vector2f(position), const sf::Color& color);
 	void ChangeColor(const sf::Color& color);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

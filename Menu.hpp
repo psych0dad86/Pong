@@ -1,7 +1,7 @@
 #pragma once
 #include "CustomFont.hpp"
 
-enum class Button{NEW_GAME, ONE_VS_ONE, _EXIT, Continue };
+enum class Button{NEW_GAME, ONE_VS_ONE, _EXIT};
 class Menu : public sf::Drawable
 {
 public:
@@ -13,6 +13,8 @@ public:
 	void SetUpbuttonPos(const sf::Vector2u windowsize);
 	void SetSelectedButton(const sf::Keyboard::Key& button);
 	void SetSelectedButton(const Button& button);
+	void changeTextFirstButton(const std::string& text);
+	const Button getSelectedButton() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	
 

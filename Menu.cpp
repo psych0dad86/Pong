@@ -59,7 +59,6 @@ void Menu::Update(const sf::Vector2u windowsize)
 	{
 	case Button::NEW_GAME:
 		_menuFont[1].ChangeColor(sf::Color::Green);
-		_menuFont[1].UpdateName("New Game");
 		break;
 	case Button::ONE_VS_ONE:
 		_menuFont[2].ChangeColor(sf::Color::Green);
@@ -67,11 +66,8 @@ void Menu::Update(const sf::Vector2u windowsize)
 	case Button::_EXIT:
 		_menuFont[3].ChangeColor(sf::Color::Green);
 		break;
-	case Button::Continue:
-		_menuFont[1].UpdateName("Continue");
-		_menuFont[1].ChangeColor(sf::Color::Green);
 	default:
-		_menuFont[0].ChangeColor(sf::Color::Yellow);
+		_menuFont[0].ChangeColor(sf::Color::White);
 		break;
 	}
 }
@@ -112,6 +108,16 @@ void Menu::SetSelectedButton(const sf::Keyboard::Key& button)
 void Menu::SetSelectedButton(const Button& button)
 {
 	_selectedButton = button;
+}
+
+void Menu::changeTextFirstButton(const std::string& text)
+{
+	_menuFont[1].UpdateName(text);
+}
+
+const Button Menu::getSelectedButton() const
+{
+	return _selectedButton;
 }
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const

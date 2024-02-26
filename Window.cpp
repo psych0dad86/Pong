@@ -9,6 +9,8 @@ Window::Window()
 
 Window::~Window()
 {
+
+	_window.close();
 }
 
 void Window::SetUp(const std::string& title)

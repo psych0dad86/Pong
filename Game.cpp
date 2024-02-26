@@ -20,7 +20,7 @@ Game::Game()
 
 	_ball.Update(sf::Vector2f(_window.GetWindowSize().x / 2.0f, _window.GetWindowSize().y / 2.0f), _window.GetWindowSize());
 
-	_gameRun = true;
+	_gameRun = false;
 	_menuOpen = true;
 	_clock.restart();
 	_elapsedTime = 0.0f;
@@ -137,14 +137,34 @@ void Game::HandleInput()
 			}
 			else if (_gameRun == true)
 			{
-				_menu.SetSelectedButton(Button::Continue);
+				_menu.changeTextFirstButton("Continue");
 			}
 			else if (_gameRun == false)
 			{
-				_menu.SetSelectedButton(Button::NEW_GAME);
+				_menu.changeTextFirstButton("New Game");
 			}
 
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false)
+			{
+				switch (_menu.getSelectedButton())
+				{
+				case (Button::NEW_GAME):
+					_menuOpen = !_menuOpen;
+					_gameRun = true;
+					_elapsedTime = 0.0f;
+					break;
+				case (Button::ONE_VS_ONE):
+					break;
+				case (Button::_EXIT):
+					_window.~Window();
+					break;
+				default:
+					std::cout << "Error, switch case, press Enter" << std::endl;
+					break;
+				}
+			}
 		}	
+
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{

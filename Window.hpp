@@ -21,7 +21,7 @@ public:
 	inline sf::RenderWindow& GetWindow() { return _window; }
 
 	const sf::Vector2u GetWindowSize()const;
-	
+	void Close();
 
 	template<typename T>
 	inline void EndDraw(const T& drawable)
@@ -32,7 +32,7 @@ public:
 private:
 	void SetUp(const std::string& title);
 	void Create();
-	void Close();
+	
 
 	sf::RenderWindow _window;
 	std::string _windowTitle;

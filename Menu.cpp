@@ -110,10 +110,12 @@ void Menu::SetSelectedButton(const Button& button)
 	_selectedButton = button;
 }
 
-void Menu::changeTextFirstButton(const std::string& text)
+void Menu::changeTextFirstSecondButton(const std::string& text, const std::string& text2)
 {
 	_menuFont[1].UpdateName(text);
+	_menuFont[2].UpdateName(text2);
 }
+
 
 const Button Menu::getSelectedButton() const
 {

@@ -106,16 +106,16 @@ void Game::HandleInput()
 	static bool p_WasReleased = true;
 	static bool up_wasReleased = true;
 	static bool down_wasReleased = true;
+	static bool enter_wasReleased = true;
 	
 	if (p_WasReleased == true)
 	{
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && _gameRun == true)
 		{
-			_menuOpen = !_menuOpen;
-			_menu.SetSelectedButton(Button::NEW_GAME);
+			_menuOpen = true;
 			p_WasReleased = false;
-			_elapsedTime = 0.0f;
+			//_elapsedTime = 0.0f;
 		}
 
 		
@@ -135,36 +135,62 @@ void Game::HandleInput()
 					down_wasReleased = false;
 				}
 			}
-			else if (_gameRun == true)
-			{
-				_menu.changeTextFirstButton("Continue");
-			}
-			else if (_gameRun == false)
-			{
-				_menu.changeTextFirstButton("New Game");
-			}
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false)
+	
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false && enter_wasReleased == true)
 			{
 				switch (_menu.getSelectedButton())
 				{
 				case (Button::NEW_GAME):
-					_menuOpen = !_menuOpen;
+					//New Game erstellen
+					_menuOpen = false;
+					_menu.changeTextFirstSecondButton("Continue", "New Game");
 					_gameRun = true;
+					_elapsedTime = 0.0f;
+					
+					break;
+				case (Button::ONE_VS_ONE):
+					
+					break;
+				case (Button::_EXIT):
+					
+					_window.Close();
+					break;
+				default:
+					std::cout << "Error, switch case, press Enter menu" << std::endl;
+					break;
+				}
+				enter_wasReleased = false;
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == true && enter_wasReleased == true)
+			{
+				
+				switch (_menu.getSelectedButton())
+				{
+				case (Button::NEW_GAME):
+					_menuOpen = !_menuOpen;
 					_elapsedTime = 0.0f;
 					break;
 				case (Button::ONE_VS_ONE):
+					//new GAme erstellen
 					break;
 				case (Button::_EXIT):
-					_window.~Window();
+					_gameRun = false;
+					_menu.changeTextFirstSecondButton("New Game", "1 vs 1");
+					_menu.SetSelectedButton(Button::NEW_GAME);
 					break;
 				default:
-					std::cout << "Error, switch case, press Enter" << std::endl;
+					std::cout << "Error, switch case, press Enter pause" << std::endl;
 					break;
 				}
+				enter_wasReleased = false;
 			}
 		}	
 
+
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	{
+		enter_wasReleased = true;
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{

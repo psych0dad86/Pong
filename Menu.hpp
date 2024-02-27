@@ -13,7 +13,7 @@ public:
 	void SetUpbuttonPos(const sf::Vector2u windowsize);
 	void SetSelectedButton(const sf::Keyboard::Key& button);
 	void SetSelectedButton(const Button& button);
-	void changeTextFirstButton(const std::string& text);
+	void changeTextFirstSecondButton(const std::string& text, const std::string& text2);
 	const Button getSelectedButton() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	

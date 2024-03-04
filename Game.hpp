@@ -11,6 +11,8 @@ public:
 
 	void HandleInput();
 	void RestartClock();
+	void ResetGame();
+	void StartBreakTime();
 
 	sf::RenderWindow& GetWindow();
 
@@ -26,8 +28,13 @@ private:
 	Menu _menu;
 	bool _menuOpen;
 	bool _gameRun;
+	bool _break;
+	bool _vsAi;
 	sf::Clock _clock;
+	sf::Clock _clockBreak;
 	float _elapsedTime;
+	float _brekTimeinSec;
+
 
 	
 	

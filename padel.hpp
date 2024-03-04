@@ -22,6 +22,8 @@ public:
 	const int& GetScore() const;
 	sf::Vector2f GetPosition();
 	void ChangeScore();
+	void ResetScore();
+	void AiSetDirection(const sf::Vector2f& position);
 
 private:
 	

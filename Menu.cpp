@@ -9,7 +9,7 @@ Menu::Menu()
 	Update(sf::Vector2u(0, 0));
 
 
-	_selectedButton = Button::NEW_GAME;
+	_selectedButton = Button::BUTTON_1;
 	_menuFont[0].UpdateName("Menu");
 	_menuFont[1].UpdateName("New Game");
 	_menuFont[2].UpdateName("1 VS 1");
@@ -57,13 +57,13 @@ void Menu::Update(const sf::Vector2u windowsize)
 
 	switch (_selectedButton)
 	{
-	case Button::NEW_GAME:
+	case Button::BUTTON_1:
 		_menuFont[1].ChangeColor(sf::Color::Green);
 		break;
-	case Button::ONE_VS_ONE:
+	case Button::BUTTON_2:
 		_menuFont[2].ChangeColor(sf::Color::Green);
 		break;
-	case Button::_EXIT:
+	case Button::BUTTON_3:
 		_menuFont[3].ChangeColor(sf::Color::Green);
 		break;
 	default:
@@ -83,9 +83,9 @@ void Menu::SetSelectedButton(const sf::Keyboard::Key& button)
 {
 	if (button == sf::Keyboard::Up)
 	{
-		if (_selectedButton == Button::NEW_GAME)
+		if (_selectedButton == Button::BUTTON_1)
 		{
-			_selectedButton = Button::_EXIT;
+			_selectedButton = Button::BUTTON_3;
 		}
 		else
 		{
@@ -94,9 +94,9 @@ void Menu::SetSelectedButton(const sf::Keyboard::Key& button)
 	}
 	else if (button == sf::Keyboard::Down)
 	{
-		if (_selectedButton == Button::_EXIT)
+		if (_selectedButton == Button::BUTTON_3)
 		{
-			_selectedButton = Button::NEW_GAME;
+			_selectedButton = Button::BUTTON_1;
 		}
 		else
 		{

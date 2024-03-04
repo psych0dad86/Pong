@@ -74,3 +74,27 @@ void Padel::ChangeScore()
 {
 	_score++;
 }
+
+void Padel::ResetScore()
+{
+	_score = 0;
+}
+
+void Padel::AiSetDirection(const sf::Vector2f& position)
+{
+	if (_padle.getPosition().y > position.y)
+	{
+		_direction = Up;
+	}
+	else if (_padle.getPosition().y < position.y)
+	{
+		_direction = Down;
+	}
+	else
+	{
+		_direction = None;
+	}
+}
+
+
+

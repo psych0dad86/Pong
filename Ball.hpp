@@ -26,7 +26,7 @@ public:
 		const sf::Vector2f& positionPlayer2);
 	void BounceDirection(const int& boundUp, const int& boundDown);
 	void Reset();
-
+	const sf::Vector2f GetPosition() const;
 	bool SetPoint(std::function<void()> player1ScoreChanger, std::function<void()> player2ScoreChanger);
 
 	

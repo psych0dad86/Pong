@@ -20,10 +20,15 @@ Game::Game()
 
 	_ball.Update(sf::Vector2f(_window.GetWindowSize().x / 2.0f, _window.GetWindowSize().y / 2.0f), _window.GetWindowSize());
 
+	_break = false;
 	_gameRun = false;
 	_menuOpen = true;
+	_vsAi = true;
 	_clock.restart();
+	_clockBreak.restart();
 	_elapsedTime = 0.0f;
+	_brekTimeinSec = 0.5f;
+
 }
 
 Game::~Game()
@@ -39,9 +44,14 @@ void Game::UpDate()
 	if(_elapsedTime >= timestep && _menuOpen == false)
 	{
 		
-		_player1.Move(_elapsedTime,_window.GetWindowSize());
-		_player2.Move(_elapsedTime,_window.GetWindowSize());
-		_ball.Move(_elapsedTime);
+
+		if (_break == false)
+		{
+			_player1.Move(_elapsedTime, _window.GetWindowSize());
+			_player2.Move(_elapsedTime, _window.GetWindowSize());
+			_ball.Move(_elapsedTime);
+			
+		}
 		_ball.ChangeBallDirection(_player1.GetShapeAdress(), _player2.GetShapeAdress(), _player1.GetPosition(),_player2.GetPosition());
 		_ball.SetPoint([&](){ _player1.ChangeScore(); }, [&](){_player2.ChangeScore(); });
 		_scorePlayer1.UpdateName(std::to_string(_player1.GetScore()));
@@ -74,7 +84,7 @@ void Game::Rendering()
 }
 void Game::HandleInput()
 {
-	if (_menuOpen == false)
+	if (_menuOpen == false && _break == false)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -88,18 +98,24 @@ void Game::HandleInput()
 		{
 			_player1.SetDirection(Direction::None);
 		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if (_vsAi == false)
 		{
-			_player2.SetDirection(Direction::Up);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				_player2.SetDirection(Direction::Up);
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				_player2.SetDirection(Direction::Down);
+			}
+			else
+			{
+				_player2.SetDirection(Direction::None);
+			}
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		else if (_vsAi == true)
 		{
-			_player2.SetDirection(Direction::Down);
-		}
-		else
-		{
-			_player2.SetDirection(Direction::None);
+			_player2.AiSetDirection(_ball.GetPosition());
 		}
 	}
 
@@ -135,23 +151,25 @@ void Game::HandleInput()
 					down_wasReleased = false;
 				}
 			}
-	
+			
+			//version with New Game, 1 VS 1, Exit
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false && enter_wasReleased == true)
 			{
 				switch (_menu.getSelectedButton())
 				{
-				case (Button::NEW_GAME):
+				case (Button::BUTTON_1):
 					//New Game erstellen
+					this->ResetGame();
 					_menuOpen = false;
 					_menu.changeTextFirstSecondButton("Continue", "New Game");
 					_gameRun = true;
-					_elapsedTime = 0.0f;
+					
 					
 					break;
-				case (Button::ONE_VS_ONE):
+				case (Button::BUTTON_2):
 					
 					break;
-				case (Button::_EXIT):
+				case (Button::BUTTON_3):
 					
 					_window.Close();
 					break;
@@ -161,22 +179,25 @@ void Game::HandleInput()
 				}
 				enter_wasReleased = false;
 			}
+			// Version with, Continio, New Game, Exit
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == true && enter_wasReleased == true)
 			{
 				
 				switch (_menu.getSelectedButton())
 				{
-				case (Button::NEW_GAME):
-					_menuOpen = !_menuOpen;
+				case (Button::BUTTON_1):
+					_menuOpen = false;
 					_elapsedTime = 0.0f;
+					this->StartBreakTime();
 					break;
-				case (Button::ONE_VS_ONE):
-					//new GAme erstellen
+				case (Button::BUTTON_2):
+					this->ResetGame();
+					_menuOpen = false;
 					break;
-				case (Button::_EXIT):
+				case (Button::BUTTON_3):
 					_gameRun = false;
 					_menu.changeTextFirstSecondButton("New Game", "1 vs 1");
-					_menu.SetSelectedButton(Button::NEW_GAME);
+					_menu.SetSelectedButton(Button::BUTTON_1);
 					break;
 				default:
 					std::cout << "Error, switch case, press Enter pause" << std::endl;
@@ -211,7 +232,28 @@ void Game::HandleInput()
 void Game::RestartClock()
 {
 	_elapsedTime += _clock.restart().asMilliseconds();
+
+	if (_clockBreak.getElapsedTime().asSeconds() > _brekTimeinSec)
+	{
+		_break = false;
+	}
 	
+}
+void Game::ResetGame()
+{
+	_ball.Reset();
+	_player1.SetPosition(_paddle_1StartPosition);
+	_player2.SetPosition(_paddle_2StartPosition);
+	_player1.ResetScore();
+	_player2.ResetScore();
+	this->StartBreakTime();
+	_elapsedTime = 0.0f;
+}
+void Game::StartBreakTime()
+{
+	_break = true;
+	_clockBreak.restart();
+
 }
 sf::RenderWindow& Game::GetWindow()
 {

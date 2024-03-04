@@ -137,6 +137,11 @@ void Ball::Reset()
 	_Colision = false;
 }
 
+const sf::Vector2f Ball::GetPosition()const
+{
+	return _ballShape.getPosition();
+}
+
 
 
 bool Ball::SetPoint(std::function<void()> player1ScoreChanger, std::function<void()> player2ScoreChanger)

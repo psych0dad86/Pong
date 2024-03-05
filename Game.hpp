@@ -13,6 +13,7 @@ public:
 	void RestartClock();
 	void ResetGame();
 	void StartBreakTime();
+	void inputMenu();
 
 	sf::RenderWindow& GetWindow();
 

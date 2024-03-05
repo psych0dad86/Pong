@@ -86,43 +86,21 @@ void Game::HandleInput()
 {
 	if (_menuOpen == false && _break == false)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			_player1.SetDirection(Direction::Up);
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-			_player1.SetDirection(Direction::Down);
-		}
-		else
-		{
-			_player1.SetDirection(Direction::None);
-		}
+		_player1.inputPlayer1();
+
 		if (_vsAi == false)
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			{
-				_player2.SetDirection(Direction::Up);
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			{
-				_player2.SetDirection(Direction::Down);
-			}
-			else
-			{
-				_player2.SetDirection(Direction::None);
-			}
+			_player2.inputPlayer2();
 		}
 		else if (_vsAi == true)
 		{
-			_player2.AiSetDirection(_ball.GetPosition());
+			_player2.AiSetDirection(_ball.GetPosition(), _ball.GetBallDirection(),
+				sf::Vector2f(_window.GetWindowSize()));
 		}
 	}
 
 	static bool p_WasReleased = true;
-	static bool up_wasReleased = true;
-	static bool down_wasReleased = true;
-	static bool enter_wasReleased = true;
+	
 	
 	if (p_WasReleased == true)
 	{
@@ -131,100 +109,22 @@ void Game::HandleInput()
 		{
 			_menuOpen = true;
 			p_WasReleased = false;
-			//_elapsedTime = 0.0f;
 		}
 
 		
 
 		if (_menuOpen == true)
 		{
-			if (up_wasReleased == true && down_wasReleased == true)
-			{
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-				{
-					_menu.SetSelectedButton(sf::Keyboard::Up);
-					up_wasReleased = false;
-				}
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-				{
-					_menu.SetSelectedButton(sf::Keyboard::Down);
-					down_wasReleased = false;
-				}
-			}
-			
-			//version with New Game, 1 VS 1, Exit
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false && enter_wasReleased == true)
-			{
-				switch (_menu.getSelectedButton())
-				{
-				case (Button::BUTTON_1):
-					//New Game erstellen
-					this->ResetGame();
-					_menuOpen = false;
-					_menu.changeTextFirstSecondButton("Continue", "New Game");
-					_gameRun = true;
-					
-					
-					break;
-				case (Button::BUTTON_2):
-					
-					break;
-				case (Button::BUTTON_3):
-					
-					_window.Close();
-					break;
-				default:
-					std::cout << "Error, switch case, press Enter menu" << std::endl;
-					break;
-				}
-				enter_wasReleased = false;
-			}
-			// Version with, Continio, New Game, Exit
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == true && enter_wasReleased == true)
-			{
-				
-				switch (_menu.getSelectedButton())
-				{
-				case (Button::BUTTON_1):
-					_menuOpen = false;
-					_elapsedTime = 0.0f;
-					this->StartBreakTime();
-					break;
-				case (Button::BUTTON_2):
-					this->ResetGame();
-					_menuOpen = false;
-					break;
-				case (Button::BUTTON_3):
-					_gameRun = false;
-					_menu.changeTextFirstSecondButton("New Game", "1 vs 1");
-					_menu.SetSelectedButton(Button::BUTTON_1);
-					break;
-				default:
-					std::cout << "Error, switch case, press Enter pause" << std::endl;
-					break;
-				}
-				enter_wasReleased = false;
-			}
-		}	
+			inputMenu();
+		}
 
 
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-	{
-		enter_wasReleased = true;
 	}
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		p_WasReleased = true;
 	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		up_wasReleased = true;
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		down_wasReleased = true;
-	}
+	
 
 
 
@@ -254,6 +154,103 @@ void Game::StartBreakTime()
 	_break = true;
 	_clockBreak.restart();
 
+}
+void Game::inputMenu()
+{
+	static bool up_wasReleased = true;
+	static bool down_wasReleased = true;
+	static bool enter_wasReleased = true;
+
+	if (up_wasReleased == true && down_wasReleased == true)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			_menu.SetSelectedButton(sf::Keyboard::Up);
+			up_wasReleased = false;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			_menu.SetSelectedButton(sf::Keyboard::Down);
+			down_wasReleased = false;
+		}
+	}
+
+	//version with New Game, 1 VS 1, Exit
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == false && enter_wasReleased == true)
+	{
+		switch (_menu.getSelectedButton())
+		{
+		case (Button::BUTTON_1):
+			//New Game erstellen
+			this->ResetGame();
+			_menuOpen = false;
+			_vsAi = true;
+			_menu.changeTextFirstSecondButton("Continue", "New Game");
+			_gameRun = true;
+
+
+			break;
+		case (Button::BUTTON_2):
+			this->ResetGame();
+			_menuOpen = false;
+			_vsAi = false;
+			_gameRun = true;
+			_menu.changeTextFirstSecondButton("Continue", "New Game");
+			break;
+		case (Button::BUTTON_3):
+
+			_window.Close();
+			break;
+		default:
+			std::cout << "Error, switch case, press Enter menu" << std::endl;
+			break;
+		}
+		enter_wasReleased = false;
+	}
+	// Version with, Continio, New Game, Exit
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && _gameRun == true && enter_wasReleased == true)
+	{
+
+		switch (_menu.getSelectedButton())
+		{
+		case (Button::BUTTON_1):
+			_menuOpen = false;
+			_elapsedTime = 0.0f;
+			this->StartBreakTime();
+			break;
+		case (Button::BUTTON_2):
+			this->ResetGame();
+			_menuOpen = false;
+			break;
+		case (Button::BUTTON_3):
+			_gameRun = false;
+			_menu.changeTextFirstSecondButton("New Game", "1 vs 1");
+			_menu.SetSelectedButton(Button::BUTTON_1);
+			break;
+		default:
+			std::cout << "Error, switch case, press Enter pause" << std::endl;
+			break;
+		}
+		enter_wasReleased = false;
+	}
+
+
+
+
+
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	{
+		enter_wasReleased = true;
+	}
+
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		up_wasReleased = true;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		down_wasReleased = true;
+	}
 }
 sf::RenderWindow& Game::GetWindow()
 {

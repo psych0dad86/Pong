@@ -32,10 +32,7 @@ const sf::RectangleShape& Padel::GetShapeAdress() const
 	return _padle;
 }
 
-void Padel::SetDirection(const Direction direction)
-{
-	_direction = direction;
-}
+
 
 void Padel::Move(const float& elapsed, const sf::Vector2u& windowsize)
 {
@@ -80,13 +77,64 @@ void Padel::ResetScore()
 	_score = 0;
 }
 
-void Padel::AiSetDirection(const sf::Vector2f& position)
+void Padel::AiSetDirection(const sf::Vector2f& position, const DirectionBall direction,
+	const sf::Vector2f windowSize)
 {
-	if (_padle.getPosition().y > position.y)
+	if (direction == DirectionBall::RIGHT && position.x > windowSize.x/2)
+	{
+		if (_padle.getPosition().y > position.y)
+		{
+			_direction = Up;
+		}
+		else if (_padle.getPosition().y < position.y && position.x /2)
+		{
+			_direction = Down;
+		}
+		else
+		{
+			_direction = None;
+		}
+	}
+	else if (direction == DirectionBall::LEFT)
+	{
+		if (_padle.getPosition().y > windowSize.y/2)
+		{
+			_direction = Up;
+		}
+		else if (_padle.getPosition().y < position.y /2 )
+		{
+			_direction = Down;
+		}
+		else
+		{
+			_direction = None;
+		}
+	}
+}
+
+void Padel::inputPlayer1()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		_direction = Up;
 	}
-	else if (_padle.getPosition().y < position.y)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		_direction = Down;
+	}
+	else
+	{
+		_direction = None;
+	}
+}
+
+void Padel::inputPlayer2()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		_direction = Up;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		_direction = Down;
 	}

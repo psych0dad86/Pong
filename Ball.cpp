@@ -161,6 +161,11 @@ bool Ball::SetPoint(std::function<void()> player1ScoreChanger, std::function<voi
 	return false;
 }
 
+DirectionBall Ball::GetBallDirection()
+{
+	return _direction;
+}
+
 
 
 

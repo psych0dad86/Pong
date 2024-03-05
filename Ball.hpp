@@ -28,6 +28,7 @@ public:
 	void Reset();
 	const sf::Vector2f GetPosition() const;
 	bool SetPoint(std::function<void()> player1ScoreChanger, std::function<void()> player2ScoreChanger);
+	DirectionBall GetBallDirection();
 
 	
 private:
